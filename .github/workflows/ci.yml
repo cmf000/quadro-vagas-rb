@@ -58,7 +58,7 @@ jobs:
 
       - name: Create and migrate test database
         run: |
-          docker compose -f .dockerdev/compose.yml run --rm rails bin/rails db:create db:schema:load
+          docker compose -f .dockerdev/compose.yml run --rm rails bin/rails db:prepare
       
       - name: Run tests
         run: |

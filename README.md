@@ -1,24 +1,65 @@
-# README
+## 🚀 Tecnologias e Ferramentas
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- **Ruby**: Última versão suportada pelo GitHub Actions (3.4.2)
+- **Rails 8**: Com suporte a Turbo, Stimulus, ImportMap e Tailwind
+- **PostgreSQL**: 16
+- **Docker & Docker Compose**: Para orquestrar o ambiente
+- **Selenium / Cuprite**: Para testes de sistema
+- **Chromium Headless**: Instalado no container para testes automatizados
+- **GitHub Actions**: Rodando testes + RuboCop
 
-Things you may want to cover:
+## 📌 Instalação
 
-* Ruby version
+### 1️⃣ Instalar Dependências
 
-* System dependencies
+O projeto está configurado para rodar em um container docker, portanto certifique-se de ter o **Docker** e o **Docker Compose** instalados no seu sistema.
 
-* Configuration
+### 2️⃣ Construir e Rodar os Containers
 
-* Database creation
+Os arquivo relativos ao Docker estão no diretório quadro-vagas-rb/.dockerdev.
 
-* Database initialization
+Execute o comando abaixo para iniciar a aplicação:
 
-* How to run the test suite
+```sh
+docker compose build
+```
+Isso irá: ✅ Construir a imagem do ambiente da aplicação
 
-* Services (job queues, cache servers, search engines, etc.)
+```sh
+ sudo docker compose up -d postgres
+```
+Isso irá: ✅  Realizar o build da imagem do banco de dados
 
-* Deployment instructions
+```sh
+docker compose run --rm rails bin/setup
+```
+✅ Executar scripts iniciais da aplicação rails, incluindo a criação do banco de dados
 
-* ...
+
+O serviço rails permite acesso à linha de comando
+
+```sh
+docker compose run --rm rails rspec # executa testes
+docker compose run --rm rails bash # acesso à linha de comando com privilégios de superusuário
+docker compose run --rm rails console # terminal do rails
+...
+```
+
+```sh
+docker compose up web
+```
+✅ Subir a aplicação no `localhost:3000`
+
+
+### 🧹 Verificando Estilo de Código com RuboCop
+
+Para rodar o **RuboCop** e garantir um código limpo e bem formatado:
+
+```sh
+docker compose run --rm rails bin/rubocop
+```
+
+### ✨ Teste de Boas-Vindas com StimulusJS
+
+Um teste de boas-vindas está incluído na aplicação para exibir um **"Hello, World!"** alguns instantes após carregar a página.
+

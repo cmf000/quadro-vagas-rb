@@ -1,0 +1,40 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/app/config/routes.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null
+        ]
+      },
+      "/app/app/controllers/home_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/app/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null
+        ]
+      }
+    },
+    "timestamp": 1741205682
+  }
+}

@@ -47,7 +47,7 @@ jobs:
       
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-      
+
       - name: Build Docker images
         run: |
           docker compose -f .dockerdev/compose.yml build
@@ -59,8 +59,8 @@ jobs:
       - name: Create and migrate test database
         run: |
           docker compose -f .dockerdev/compose.yml run --rm rails bin/rails db:prepare
-      
+
       - name: Run tests
         run: |
           docker compose -f .dockerdev/compose.yml run --rm rails bin/rake spec
-
+          

@@ -51,7 +51,11 @@ jobs:
       - name: Build Docker images
         run: |
           docker compose -f .dockerdev/compose.yml build
-      
+
+      - name: Install gems
+        run: |
+          docker compose -f .dockerdev/compose.yml run --rm rails bundle install
+
       - name: Create and migrate test database
         run: |
           docker compose -f .dockerdev/compose.yml run --rm rails bin/rails db:create db:schema:load

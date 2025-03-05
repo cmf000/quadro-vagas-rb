@@ -1,0 +1,66 @@
+x-app: &app
+  build:
+    context: .
+    args:
+      RUBY_VERSION: '3.4.2'
+      PG_MAJOR: '16'
+  image: example-dev:1.0.0
+  environment: &env
+    RAILS_ENV: ${RAILS_ENV:-development}
+  tmpfs:
+    - /tmp
+    - /app/tmp/pids
+
+x-backend: &backend
+  <<: *app
+  stdin_open: true
+  tty: true
+  volumes:
+    - ..:/app:cached
+    - bundle:/usr/local/bundle
+    - rails_cache:/app/tmp/cache
+    - history:/usr/local/hist
+    - assets_builds:/app/assets/builds
+  environment: &backend_environment
+    <<: *env
+    DATABASE_URL: postgres://postgres:postgres@postgres:5432
+    BOOTSNAP_CACHE_DIR: /usr/local/bundle/_bootsnap
+    HISTFILE: /usr/local/hist/.bash_history
+    PSQL_HISTFILE: /usr/local/hist/.psql_history
+    IRB_HISTFILE: /usr/local/hist/.irb_history
+    EDITOR: vi
+  depends_on: &backend_depends_on
+    postgres:
+      condition: service_healthy
+
+services:
+  rails:
+    <<: *backend
+    command: bundle exec rails
+
+  web:
+    <<: *backend
+    command: bundle exec rails server -b 0.0.0.0
+    ports:
+      - '3000:3000'
+
+  postgres:
+    image: postgres:16
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - history:/user/local/hist
+    environment:
+      PSQL_HISTFILE: /user/local/hist/.psql_history
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432
+    healthcheck:
+      test: pg_isready -U postgres -h 127.0.0.1
+      interval: 5s
+
+volumes:
+  bundle:
+  history:
+  rails_cache:
+  postgres:
+  assets_builds:

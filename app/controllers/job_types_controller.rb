@@ -1,5 +1,5 @@
 class JobTypesController < ApplicationController
-  before_action :check_user_is_admin, only: [ :new ]
+  before_action :check_user_is_admin, only: [ :new, :create ]
   def index
     @job_types = JobType.all
   end
@@ -14,12 +14,13 @@ class JobTypesController < ApplicationController
       flash[:notice] = "Tipo de vaga criada com sucesso"
       redirect_to job_types_path
     else
-      flash.now[:alert] = "Something went wrong"
+      flash.now[:alert] = "Não foi possível criar o tipo de vaga"
       render "new", status: :unprocessable_entity
     end
   end
 
   private
+
   def job_type_params
     params.require(:job_type).permit(:name, :active)
   end

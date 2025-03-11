@@ -3,10 +3,10 @@ include ActionView::RecordIdentifier
 
 describe 'admin views job type list', type: :system do
   it 'success' do
-    job_type_1 = FactoryBot.create(:job_type, name: 'Estágio', active: true)
-    job_type_2 = FactoryBot.create(:job_type, name: 'Pleno', active: true)
-    job_type_3 = FactoryBot.create(:job_type, name: 'Júnior', active: false)
-    admin = FactoryBot.create(:user, role: :admin)
+    job_type_1 = create(:job_type, name: 'Estágio', active: true)
+    job_type_2 = create(:job_type, name: 'Pleno', active: true)
+    job_type_3 = create(:job_type, name: 'Júnior', active: false)
+    admin = create(:user, role: :admin)
 
     login_as(admin)
     visit job_types_path
@@ -31,7 +31,7 @@ describe 'admin views job type list', type: :system do
   end
 
   it 'user must be admin' do
-    regular = FactoryBot.create(:user, role: :regular)
+    regular = create(:user, role: :regular)
 
     login_as(regular)
     visit job_types_path

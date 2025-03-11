@@ -5,7 +5,7 @@ describe 'admin registers job type', type: :system do
   end
 
   it 'with status active' do
-    admin = FactoryBot.create(:user, role: :admin)
+    admin = create(:user, role: :admin)
 
     login_as admin
     visit new_job_type_path
@@ -20,7 +20,7 @@ describe 'admin registers job type', type: :system do
   end
 
   it 'with status archived' do
-    admin = FactoryBot.create(:user, role: :admin)
+    admin = create(:user, role: :admin)
 
     login_as admin
     visit new_job_type_path
@@ -34,7 +34,7 @@ describe 'admin registers job type', type: :system do
   end
 
   it 'only admin users are allowed to create a job type' do
-    regular = FactoryBot.create(:user, role: :regular)
+    regular = create(:user, role: :regular)
 
     login_as regular
 
@@ -51,7 +51,7 @@ describe 'admin registers job type', type: :system do
   end
 
   xit 'name is required' do
-    admin = FactoryBot.create(:user, role: :admin)
+    admin = create(:user, role: :admin)
 
     login_as admin
     visit new_job_type_path

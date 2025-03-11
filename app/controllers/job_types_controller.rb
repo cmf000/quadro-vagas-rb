@@ -24,12 +24,10 @@ class JobTypesController < ApplicationController
   end
 
   def update
-    p params
     if @job_type.update(job_type_params)
       flash[:notice] = "Tipo de vaga editada com sucesso"
       redirect_to job_types_path
     else
-      p @job_type.errors.full_messages
       flash.now[:alert] = "Não foi possível editar"
       render "edit", status: :unprocessable_entity
     end

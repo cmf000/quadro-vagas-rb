@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'User registers new job type', type: :request do
   it 'success' do
-    admin = FactoryBot.create(:user, role: :admin)
+    admin = create(:user, role: :admin)
 
     request_login_as admin
     post job_types_path params: { job_type: {
@@ -17,7 +17,7 @@ describe 'User registers new job type', type: :request do
   end
 
   it 'user must be admin' do
-    regular = FactoryBot.create(:user, role: :regular)
+    regular = create(:user, role: :regular)
 
     request_login_as regular
     post job_types_path params: { job_type: {
@@ -41,7 +41,7 @@ describe 'User registers new job type', type: :request do
   end
 
   it 'name is required' do
-    admin = FactoryBot.create(:user, role: :admin)
+    admin = create(:user, role: :admin)
 
     request_login_as admin
     post job_types_path params: { job_type: {
@@ -53,8 +53,8 @@ describe 'User registers new job type', type: :request do
   end
 
   it 'name must be unique' do
-    admin = FactoryBot.create(:user, role: :admin)
-    FactoryBot.create(:job_type, name: 'Estágio', active: true)
+    admin = create(:user, role: :admin)
+    create(:job_type, name: 'Estágio', active: true)
 
     request_login_as admin
     post job_types_path params: { job_type: {

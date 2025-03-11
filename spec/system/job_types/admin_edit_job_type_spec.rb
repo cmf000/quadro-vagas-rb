@@ -39,8 +39,8 @@ describe 'admin edits job type', type: :system do
   end
 
   xit 'and name is required' do
-    admin = FactoryBot.create(:user, role: :admin)
-    job_type = FactoryBot.create(:job_type, name: 'Estágio', active: true)
+    admin = create(:user, role: :admin)
+    job_type = create(:job_type, name: 'Estágio', active: true)
 
     login_as admin
     visit edit_job_type_path(job_type)

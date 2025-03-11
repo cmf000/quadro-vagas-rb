@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "Visitor sees job postings", type: :system do
   it "successfully" do
     rubyoncloud = CompanyProfile.create(name: "Ruby on cloud", website_url: "http://rubyoncloud.com", contact_email: "contact@rubyoncloud.com")
-    remote_job = JobType.create(name: "Remote")
+    remote_job = create(:job_type, name: "Remote")
 
     JobPosting.create(title: "Dev Rails", company_profile: rubyoncloud, salary: "1000.00", salary_currency: "USD", salary_period: "Monthly", job_type: remote_job, description: "Software Developer")
     second_job_posting = create(:job_posting)

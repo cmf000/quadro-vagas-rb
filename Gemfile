@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'acts-as-taggable-on'
+gem "acts-as-taggable-on"
 gem "bootsnap", require: false
 gem "importmap-rails"
 gem "jbuilder"
@@ -20,6 +20,7 @@ gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 group :development, :test do
+  gem "byebug"
   gem "cuprite"
   gem "capybara"
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

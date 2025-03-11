@@ -2,6 +2,33 @@ require 'rails_helper'
 include ActionView::RecordIdentifier
 
 describe 'admin views job type list', type: :system do
+  it 'through the navbar button' do
+    admin = create(:user, role: :admin)
+    create(:job_type, name: 'Estágio', active: true)
+    create(:job_type, name: 'Pleno', active: false)
+
+    login_as admin
+    visit root_path
+    within 'nav' do
+      click_on 'Tipos de Vagas'
+    end
+
+    expect(current_path).to eq job_types_path
+    expect(page).to have_content 'Estágio'
+    expect(page).to have_content 'Ativo'
+    expect(page).to have_content 'Pleno'
+    expect(page).to have_content 'Arquivado'
+  end
+
+  it 'only admin users can view navbar button' do
+    regular = create(:user, role: :regular)
+
+    login_as regular
+    visit root_path
+
+    expect(page).not_to have_link 'Tipos de Vagas'
+  end
+
   it 'success' do
     job_type_1 = create(:job_type, name: 'Estágio', active: true)
     job_type_2 = create(:job_type, name: 'Pleno', active: true)

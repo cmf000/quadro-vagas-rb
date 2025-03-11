@@ -1,0 +1,21 @@
+pt-BR:
+  job_types:
+    negated_access: Acesso não autorizado
+    form:
+      save: Salvar
+    index:
+      title: Tipos de Vagas
+      new_job_type: Novo Tipo de Vaga
+      edit: Editar
+      active: Ativo
+      archived: Arquivado
+    new:
+      title: Novo tipo de vaga
+    edit:
+      title: Editar tipo de vaga
+    create:
+      success: Tipo de vaga criada com sucesso
+      alert: Não foi possível criar o tipo de vaga
+    update:
+      success: Tipo de vaga editada com sucesso
+      alert: Não foi possível editar

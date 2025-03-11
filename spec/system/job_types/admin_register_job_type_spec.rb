@@ -1,7 +1,15 @@
 require 'rails_helper'
 
 describe 'admin registers job type', type: :system do
-  xit 'access button' do
+  it 'through the job types index page' do
+    admin = create(:user, role: :admin)
+
+    login_as admin
+    visit root_path
+    click_on 'Tipos de Vagas'
+    click_on 'Novo Tipo de Vaga'
+
+    expect(current_path).to eq new_job_type_path
   end
 
   it 'with status active' do
@@ -50,7 +58,7 @@ describe 'admin registers job type', type: :system do
     expect(current_path).to eq new_session_path
   end
 
-  xit 'name is required' do
+  it 'name is required' do
     admin = create(:user, role: :admin)
 
     login_as admin
@@ -59,6 +67,6 @@ describe 'admin registers job type', type: :system do
     click_on 'Salvar'
 
     expect(page).to have_content 'Não foi possível criar o tipo de vaga'
-    expect(page).to have_content 'Nome é obrigatório'
+    expect(page).to have_content 'Nome não pode ficar em branco'
   end
 end

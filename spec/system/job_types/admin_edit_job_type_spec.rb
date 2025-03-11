@@ -38,7 +38,7 @@ describe 'admin edits job type', type: :system do
     expect(current_path).to eq new_session_path
   end
 
-  xit 'and name is required' do
+  it 'and name is required' do
     admin = create(:user, role: :admin)
     job_type = create(:job_type, name: 'Estágio', active: true)
 
@@ -48,7 +48,7 @@ describe 'admin edits job type', type: :system do
     uncheck 'Ativo'
     click_on 'Salvar'
 
-    expect(page).to have_content 'Falha ao salvar o tipo de vaga'
-    expect(page).to have_content 'Nome é obrigatório'
+    expect(page).to have_content 'Não foi possível editar'
+    expect(page).to have_content 'Nome não pode ficar em branco'
   end
 end

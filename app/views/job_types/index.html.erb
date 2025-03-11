@@ -1,5 +1,7 @@
 <div class="max-w-2xl mx-auto p-6">
-  <h1 class="text-2xl font-semibold text-center text-slate-800 mb-6">Tipos de Vagas</h1>
+  <h1 class="text-2xl font-semibold text-center text-slate-800 mb-6"><%= t('.title') %></h1>
+
+	<%= link_to t('.new_job_type'), new_job_type_path %>
 
   <div class="bg-white shadow-md rounded-lg overflow-hidden">
     <% @job_types.each do |job_type| %>
@@ -7,9 +9,9 @@
         <span class="text-lg font-medium text-slate-700"><%= job_type.name %></span>
         <span class="px-3 py-1 text-sm font-semibold rounded-full
           <%= job_type.active ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800' %>">
-          <%= job_type.active ? "Ativo" : "Arquivado" %>
+          <%= job_type.active ? t('.active') : t('.archived') %>
         </span>
-				<%= link_to 'Editar', edit_job_type_path(job_type) %>
+				<%= link_to t('.edit'), edit_job_type_path(job_type) %>
       </div>
     <% end %>
   </div>

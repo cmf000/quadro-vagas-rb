@@ -12,10 +12,10 @@ class JobTypesController < ApplicationController
   def create
     @job_type = JobType.new(job_type_params)
     if @job_type.save
-      flash[:notice] = "Tipo de vaga criada com sucesso"
+      flash[:notice] = t ".success"
       redirect_to job_types_path
     else
-      flash.now[:alert] = "Não foi possível criar o tipo de vaga"
+      flash.now[:alert] = t ".alert"
       render "new", status: :unprocessable_entity
     end
   end
@@ -25,10 +25,10 @@ class JobTypesController < ApplicationController
 
   def update
     if @job_type.update(job_type_params)
-      flash[:notice] = "Tipo de vaga editada com sucesso"
+      flash[:notice] = t ".success"
       redirect_to job_types_path
     else
-      flash.now[:alert] = "Não foi possível editar"
+      flash.now[:alert] = t ".alert"
       render "edit", status: :unprocessable_entity
     end
   end
@@ -40,7 +40,7 @@ class JobTypesController < ApplicationController
   end
 
   def check_user_is_admin
-    redirect_to root_path, notice: "Acesso não autorizado" unless Current.user.admin?
+    redirect_to root_path, notice: t(".negated_access") unless Current.user.admin?
   end
 
   def set_job_type

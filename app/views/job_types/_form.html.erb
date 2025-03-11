@@ -1,10 +1,10 @@
-
 <%= form_with model: job_type, url: url, method: method do |f| %>
-  <%= f.label :name, "Nome" %>
+  <%= f.label :name %>
   <%= f.text_field :name %>
+  <%= form_errors job_type, :name %>
 
-  <%= f.label :active, "Ativo" %>
+  <%= f.label :active %>
   <%= f.checkbox :active %>
   
-  <%= f.submit "Salvar" %>
+  <%= f.submit t('.save') %>
 <% end %>

@@ -1,10 +1,1 @@
-
-<%= form_with model: @job_type do |f| %>
-    <%= f.label :name, "Nome" %>
-    <%= f.text_field :name %>
-
-    <%= f.label :active, "Ativo" %>
-    <%= f.checkbox :active %>
-    
-    <%= f.submit "Salvar" %>
-<% end %>
+<%= render 'form', job_type: @job_type, url: job_types_path, method: "create" %>

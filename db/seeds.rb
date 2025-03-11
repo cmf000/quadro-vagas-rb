@@ -17,9 +17,17 @@ JobType.delete_all
   JobType.create!(name: job_type_name)
 end
 
+# Creates three users
+3.times do |n|
+  User.create!(name: "User #{n}th", last_name: "Doe", email_address: "#{n}th@email.com", password: "password123", password_confirmation: "password123")
+end
+
 # Creates three company profiles
 3.times do |n|
-  CompanyProfile.create!(name: "Company Name #{n}", website_url: "http://company#{n}.com", contact_email: "contact@company#{n}.com")
+  profile = CompanyProfile.new(name: "Company Name #{n}", website_url: "http://company#{n}.com", contact_email: "contact@company#{n}.com")
+  profile.logo.attach(io: File.open(Rails.root.join('spec/support/files/logo.jpg')), filename: 'logo.jpg')
+  profile.user_id = n + 1
+  profile.save!
 end
 
 # Creates three job postings

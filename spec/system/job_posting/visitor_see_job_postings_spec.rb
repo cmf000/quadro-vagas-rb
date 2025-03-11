@@ -2,12 +2,15 @@ require 'rails_helper'
 
 describe "Visitor sees job postings", type: :system do
   it "successfully" do
-    rubyoncloud = CompanyProfile.create(name: "Ruby on cloud", website_url: "http://rubyoncloud.com", contact_email: "contact@rubyoncloud.com")
+    first_user = create(:user)
+    rubyoncloud = create(:company_profile, name: "Ruby on cloud", website_url: "http://rubyoncloud.com", contact_email: "contact@rubyoncloud.com", user: first_user)
     remote_job = create(:job_type, name: "Remote")
+    create(:job_posting, title: "Dev Rails", salary: "1000.00", salary_currency: "USD", salary_period: "Monthly", job_type: remote_job, description: "Software Developer", company_profile: rubyoncloud)
 
-    JobPosting.create(title: "Dev Rails", company_profile: rubyoncloud, salary: "1000.00", salary_currency: "USD", salary_period: "Monthly", job_type: remote_job, description: "Software Developer")
-    second_job_posting = create(:job_posting)
-    third_job_posting = create(:job_posting)
+    second_user = create(:user, email_address: 'second@user.com')
+    second_company = create(:company_profile, user: second_user, contact_email: 'second@company.com')
+    second_job_posting = create(:job_posting, company_profile: second_company)
+    third_job_posting = create(:job_posting, company_profile: second_company)
 
     visit root_path
 

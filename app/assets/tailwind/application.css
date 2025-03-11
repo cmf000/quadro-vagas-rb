@@ -1,1 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@layer components {
+  h1 {
+    @apply text-3xl font-bold text-emerald-600;
+  }
+}

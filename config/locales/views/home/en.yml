@@ -3,6 +3,3 @@ en:
     index:
       no_jobs_found: 'No jobs found'
       no_jobs_available: 'There are no job postings available right now.'
-  shared:
-    _navbar:
-      placeholder_search: 'Search here...'

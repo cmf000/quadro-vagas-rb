@@ -52,7 +52,18 @@ RSpec.configure do |config|
             })
   end
 
+  include FactoryBot::Syntax::Methods
+
   config.use_transactional_fixtures = true
 
   config.filter_rails_from_backtrace!
+
+  config.include FactoryBot::Syntax::Methods
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end

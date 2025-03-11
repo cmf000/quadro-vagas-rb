@@ -24,8 +24,18 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <%= flash[:notice] %>
-    <%= flash[:alert] %>
+    <div class="flex justify-center m-1">
+      <% if flash[:notice] %>
+        <p class="bg-green-50 text-center p-1 text-green-500 font-medium rounded-lg inline-block">
+          <%= notice %>
+        </p>
+      <% end %>
+      <% if flash[:alert] %>
+        <p class="bg-red-50 text-center p-1 text-red-500 font-medium rounded-lg inline-block">
+          <%= alert %>
+        </p>
+      <% end %>
+    </div>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>

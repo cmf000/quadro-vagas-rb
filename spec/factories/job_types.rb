@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :job_type do
-    name { "MyString" }
+    name { [ "Full Time", "Part Time", "Freelance" ].sample }
   end
 end

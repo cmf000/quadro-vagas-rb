@@ -1,0 +1,16 @@
+pt-BR:
+  registrations:
+    new:
+      title: "Criar Conta"
+      already_have_account: "Já possui uma conta?"
+      sign_in: "Entrar"
+      submit: "Cadastrar"
+      placeholder:
+        name: "Digite seu nome"
+        last_name: "Digite seu sobrenome"
+        email_address: "Digite seu e-mail"
+        password: "Digite sua senha"
+        password_confirmation: "Confirme sua senha"
+    create:
+      success: "Usuário criado com sucesso."
+      alert: "Erro ao criar usuário."

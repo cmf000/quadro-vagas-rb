@@ -1,0 +1,8 @@
+pt-BR:
+  home:
+    index:
+      no_jobs_found: 'Nenhuma vaga encontrada.'
+      no_jobs_available: 'Nenhuma vaga disponível no momento.'
+  shared:
+    _navbar:
+      placeholder_search: 'Pesquise aqui...'

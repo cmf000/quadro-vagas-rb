@@ -1,0 +1,16 @@
+en:
+  registrations:
+    new:
+      title: "Create Account"
+      already_have_account: "Already have an account?"
+      sign_in: "Sign in"
+      submit: "Sign up"
+      placeholder:
+        name: "Enter your first name"
+        last_name: "Enter your last name"
+        email_address: "Enter your email"
+        password: "Enter your password"
+        password_confirmation: "Confirm your password"
+    create:
+      success: "User successfully created."
+      alert: "Error creating user."

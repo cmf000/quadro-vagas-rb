@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
+  resource :registration, only: [ :new, :create ]
+
   get "home/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -14,6 +16,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+
+  resources :job_postings, only: %i[show]
+  get "search", to: "home#search", as: :search_jobs, param: :query
 
   resources :job_types, only: [ :index, :new, :create, :edit, :update ]
 end

@@ -34,6 +34,44 @@ describe 'user create job post', type: :system do
     expect(page).to have_content 'Part time'
   end
 
+  it 'and add multiples tags', js: true do
+    user = create(:user)
+    create(:company_profile, user: user)
+    JobType.create!(name: 'Part time')
+    ExperienceLevel.create!(name: 'Junior')
+
+    login_as user
+
+    visit root_path
+
+    click_on 'Anunciar vaga'
+    fill_in 'Título', with: 'Desenvolvedor backend'
+    select 'Mensal', from: 'Período do salário'
+    select 'BRL', from: 'Moeda'
+    fill_in 'Salário', with: '1234'
+    select 'Part time', from: 'Tipo de trabalho'
+    select 'Remoto', from: 'Arranjo de trabalho'
+    select 'Junior', from: 'Nível de experiência'
+    find('trix-editor').click.set("teste")
+    find('#new_tags_fields0').set('Rails')
+    find('#new_field_tag').click
+    find('#new_tags_fields1').set('TDD')
+    find('#new_field_tag').click
+    find('#new_tags_fields2').set('RSpec')
+    click_on 'Anunciar'
+
+    expect(page).to have_content 'Anúncio criado com sucesso'
+    expect(page).to have_content 'Desenvolvedor backend'
+    expect(page).to have_content 'BlinkedOn'
+    expect(page).to have_content 'Part time'
+
+    within '#tags' do
+      expect(page).to have_content 'Rails'
+      expect(page).to have_content 'TDD'
+      expect(page).to have_content 'RSpec'
+    end
+  end
+
   it 'fail due to empty required fields' do
     user = create(:user)
     create(:company_profile, user: user)

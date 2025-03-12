@@ -52,6 +52,18 @@
         </div>
 
         <div>
+            <h2><%= t(".tag") %></h2>
+            <div data-controller="tags" class="flex flex-1 gap-2">
+                <div id="new_tags_fields" data-tags-target="newTags" class="w-full"></div>
+                <div class="mt-2 mb-2">
+                    <button type="button" data-action="click->tags#addTag" data-tags-target="btn" class="hover:cursor-pointer">
+                        <%= image_tag 'plus.svg', class: 'w-8', title: 'Nova tag', id: 'new_field_tag' %>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div>
             <%= f.label :description %>
             <%= f.rich_text_area :description %>
             <%= form_errors @job_posting, :description %>

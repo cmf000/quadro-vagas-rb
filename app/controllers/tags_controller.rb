@@ -16,6 +16,8 @@ class TagsController < ApplicationController
 
   def set_job_posting
     @job_posting = JobPosting.find(params[:job_posting_id])
+
+    redirect_to root_path, alert: t(".alert") if Current.user.company_profile != @job_posting.company_profile
   end
 
   def job_posting_has_maximum_tags?

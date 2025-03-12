@@ -22,7 +22,7 @@ end
 
 # Creates three company profiles
 3.times do |n|
-  profile = CompanyProfile.new(user_id: users[ n ].id, name: "Company Name #{n}", website_url: "http://company#{n}.com", contact_email: "contact@company#{n}.com")
+  profile = CompanyProfile.new(user_id: users[n].id, name: "Company Name #{n}", website_url: "http://company#{n}.com", contact_email: "contact@company#{n}.com")
   profile.logo.attach(io: File.open(Rails.root.join('spec/support/files/logo.jpg')), filename: 'logo.jpg')
   profile.save!
 end

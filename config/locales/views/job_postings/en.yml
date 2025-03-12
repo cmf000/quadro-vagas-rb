@@ -3,6 +3,7 @@ en:
     new:
       title: "Post a Job"
       submit: "Submit"
+      tag: "Tags"
       select:
         work_arrangement: "Select work arrangement"
         salary_period: "Select salary period"

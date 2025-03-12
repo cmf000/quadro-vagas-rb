@@ -2,11 +2,12 @@ require 'rails_helper'
 
 describe "Visitor search for jobs by title and description", type: :system do
   it 'successfuly' do
-    create(:job_posting, title: "RUBY on Rails Dev Jr.", description: "Rails dev Jr")
-    create(:job_posting, title: "Sinatra Developer Jr.", description: "Ruby developer")
-    create(:job_posting, title: "Sinatra Dev Pl.", description: "Clean Architecture")
-    create(:job_posting, title: "Rails Developer Pl.", description: "TDD e RSpec")
-    create(:job_posting, title: "DragonRuby Game Dev Sr.", description: "Game Developer")
+    company_profile = create(:company_profile)
+    create(:job_posting, title: "RUBY on Rails Dev Jr.", description: "Rails dev Jr", company_profile: company_profile)
+    create(:job_posting, title: "Sinatra Developer Jr.", description: "Ruby developer", company_profile: company_profile)
+    create(:job_posting, title: "Sinatra Dev Pl.", description: "Clean Architecture", company_profile: company_profile)
+    create(:job_posting, title: "Rails Developer Pl.", description: "TDD e RSpec", company_profile: company_profile)
+    create(:job_posting, title: "DragonRuby Game Dev Sr.", description: "Game Developer", company_profile: company_profile)
 
     visit root_path
     fill_in "query", with: "ruby"
@@ -20,11 +21,12 @@ describe "Visitor search for jobs by title and description", type: :system do
   end
 
   it 'and search empty' do
-    create(:job_posting, title: "RUBY on Rails Dev Jr.", description: "Rails dev Jr")
-    create(:job_posting, title: "Sinatra Developer Jr.", description: "Ruby developer")
-    create(:job_posting, title: "Sinatra Dev Pl.", description: "Clean Architecture")
-    create(:job_posting, title: "Rails Developer Pl.", description: "TDD e RSpec")
-    create(:job_posting, title: "DragonRuby Game Dev Sr.", description: "Game Developer")
+    company_profile = create(:company_profile)
+    create(:job_posting, title: "RUBY on Rails Dev Jr.", description: "Rails dev Jr", company_profile: company_profile)
+    create(:job_posting, title: "Sinatra Developer Jr.", description: "Ruby developer", company_profile: company_profile)
+    create(:job_posting, title: "Sinatra Dev Pl.", description: "Clean Architecture", company_profile: company_profile)
+    create(:job_posting, title: "Rails Developer Pl.", description: "TDD e RSpec", company_profile: company_profile)
+    create(:job_posting, title: "DragonRuby Game Dev Sr.", description: "Game Developer", company_profile: company_profile)
 
     visit root_path
     fill_in "query", with: ""
@@ -39,11 +41,12 @@ describe "Visitor search for jobs by title and description", type: :system do
   end
 
   it 'and not found jobs' do
-    create(:job_posting, title: "RUBY on Rails Dev Jr.", description: "Rails dev Jr")
-    create(:job_posting, title: "Sinatra Developer Jr.", description: "Ruby developer")
-    create(:job_posting, title: "Sinatra Dev Pl.", description: "Clean Architecture")
-    create(:job_posting, title: "Rails Developer Pl.", description: "TDD e RSpec")
-    create(:job_posting, title: "DragonRuby Game Dev Sr.", description: "Game Developer")
+    company_profile = create(:company_profile)
+    create(:job_posting, title: "RUBY on Rails Dev Jr.", description: "Rails dev Jr", company_profile: company_profile)
+    create(:job_posting, title: "Sinatra Developer Jr.", description: "Ruby developer", company_profile: company_profile)
+    create(:job_posting, title: "Sinatra Dev Pl.", description: "Clean Architecture", company_profile: company_profile)
+    create(:job_posting, title: "Rails Developer Pl.", description: "TDD e RSpec", company_profile: company_profile)
+    create(:job_posting, title: "DragonRuby Game Dev Sr.", description: "Game Developer", company_profile: company_profile)
 
     visit root_path
     fill_in "query", with: "Node"

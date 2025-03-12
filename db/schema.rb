@@ -10,10 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_11_132042) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_11_170530) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
 
   create_table "company_profiles", force: :cascade do |t|
     t.string "name"
@@ -21,6 +59,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_11_132042) do
     t.string "contact_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_company_profiles_on_user_id"
   end
 
   create_table "experience_levels", force: :cascade do |t|
@@ -32,14 +72,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_11_132042) do
   create_table "job_postings", force: :cascade do |t|
     t.string "title"
     t.bigint "company_profile_id", null: false
-    t.string "salary"
-    t.string "salary_currency"
-    t.string "salary_period"
+    t.decimal "salary"
+    t.integer "salary_currency"
+    t.integer "salary_period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "job_type_id", null: false
-    t.text "description"
+    t.integer "work_arrangement"
+    t.bigint "experience_level_id", null: false
+    t.string "job_location"
     t.index ["company_profile_id"], name: "index_job_postings_on_company_profile_id"
+    t.index ["experience_level_id"], name: "index_job_postings_on_experience_level_id"
     t.index ["job_type_id"], name: "index_job_postings_on_job_type_id"
   end
 
@@ -100,7 +143,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_11_132042) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "company_profiles", "users"
   add_foreign_key "job_postings", "company_profiles"
+  add_foreign_key "job_postings", "experience_levels"
   add_foreign_key "job_postings", "job_types"
   add_foreign_key "sessions", "users"
   add_foreign_key "taggings", "tags"

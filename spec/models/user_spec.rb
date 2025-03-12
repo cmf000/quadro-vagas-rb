@@ -24,6 +24,16 @@ RSpec.describe User, type: :model do
       it { should_not allow_value('userexample').for(:email_address) }
       it { should_not allow_value('user@example').for(:email_address) }
     end
+
+    context 'comparison with company emails' do
+      it "should not be equal to any company's contact email" do
+        company_owner = create(:user)
+        a_company_with_a_specific_email = create(:company_profile, contact_email: 'specific@email.com', user: company_owner)
+        invalid_user = build(:user, email_address: a_company_with_a_specific_email.contact_email)
+
+        expect(invalid_user).not_to be_valid
+      end
+    end
   end
 
   describe 'enum' do

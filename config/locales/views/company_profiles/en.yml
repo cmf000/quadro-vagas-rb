@@ -1,0 +1,11 @@
+en:
+  company_profiles:
+    show:
+      company_profile_detail: 'My Company Profile'
+    new:
+      no_profile: "You have no Company Profile associated to your account yet. Let's create one:"
+      create_profile: Create Company Profile
+      user_already_has_a_company_profile: You have already created a Company Profile
+    create:
+      success: Company Profile created successfully!
+      failure: Error while trying to create a Company Profile

@@ -2,7 +2,9 @@ source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "acts-as-taggable-on"
+gem "bcrypt", "~> 3.1"
 gem "bootsnap", require: false
+gem "image_processing", "~> 1.14"
 gem "importmap-rails"
 gem "jbuilder"
 gem "pg"
@@ -30,5 +32,3 @@ group :development, :test do
   gem "simplecov", require: false
   gem "shoulda-matchers"
 end
-
-gem "bcrypt", "~> 3.1"

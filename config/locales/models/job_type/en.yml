@@ -7,4 +7,4 @@ en:
     attributes:
       job_type:
         name: Name
-        active: Active
+        status: Status

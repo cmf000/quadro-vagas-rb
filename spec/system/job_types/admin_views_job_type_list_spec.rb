@@ -4,8 +4,8 @@ include ActionView::RecordIdentifier
 describe 'admin views job type list', type: :system do
   it 'through the navbar button' do
     admin = create(:user, role: :admin)
-    create(:job_type, name: 'Estágio', active: true)
-    create(:job_type, name: 'Pleno', active: false)
+    create(:job_type, name: 'Estágio', status: :active)
+    create(:job_type, name: 'Pleno', status: :archived)
 
     login_as admin
     visit root_path
@@ -30,9 +30,9 @@ describe 'admin views job type list', type: :system do
   end
 
   it 'success' do
-    job_type_1 = create(:job_type, name: 'Estágio', active: true)
-    job_type_2 = create(:job_type, name: 'Pleno', active: true)
-    job_type_3 = create(:job_type, name: 'Júnior', active: false)
+    job_type_1 = create(:job_type, name: 'Estágio', status: :active)
+    job_type_2 = create(:job_type, name: 'Pleno', status: :active)
+    job_type_3 = create(:job_type, name: 'Júnior', status: :archived)
     admin = create(:user, role: :admin)
 
     login_as(admin)
@@ -71,5 +71,14 @@ describe 'admin views job type list', type: :system do
     visit job_types_path
 
     expect(current_path).to eq new_session_path
+  end
+
+  it 'and there is no job type registered' do
+    admin = create(:user, role: :admin)
+
+    login_as admin
+    visit job_types_path
+
+    expect(page).to have_content 'Não há tipos de vagas cadastrados'
   end
 end

@@ -7,4 +7,4 @@ pt-BR:
     attributes:
       job_type:
         name: Nome
-        active: Ativo
+        status: Status

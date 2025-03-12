@@ -1,14 +1,19 @@
 pt-BR:
   job_types:
     negated_access: Acesso não autorizado
+    not_found: Tipo de vaga não encontrado
     form:
       save: Salvar
+      status:
+        active: Ativo
+        archived: Arquivado
     index:
       title: Tipos de Vagas
       new_job_type: Novo Tipo de Vaga
       edit: Editar
       active: Ativo
       archived: Arquivado
+      no_records: Não há tipos de vagas cadastrados.
     new:
       title: Novo tipo de vaga
     edit:

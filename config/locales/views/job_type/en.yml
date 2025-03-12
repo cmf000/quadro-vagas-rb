@@ -1,14 +1,19 @@
 pt-BR:
   job_types:
     negated_access: Access negated
+    not_found: Job type not found
     form:
       save: Save
+      status:
+        active: Active
+        archived: Archived
     index:
       title: Job Types
       new_job_type: New Job Type
       edit: Edit
       active: Active
       archived: Archived
+      no_records: No job types registered.
     new:
       title: New Job Type
     edit:

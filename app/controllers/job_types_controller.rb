@@ -1,5 +1,5 @@
 class JobTypesController < ApplicationController
-  before_action :check_user_is_admin, only: [ :new, :create, :index, :edit, :update ]
+  before_action :check_user_is_admin
   before_action :set_job_type, only: [ :edit, :update ]
   def index
     @job_types = JobType.all
@@ -36,7 +36,7 @@ class JobTypesController < ApplicationController
   private
 
   def job_type_params
-    params.require(:job_type).permit(:name, :active)
+    params.require(:job_type).permit(:name, :status)
   end
 
   def check_user_is_admin
@@ -44,6 +44,7 @@ class JobTypesController < ApplicationController
   end
 
   def set_job_type
-    @job_type = JobType.find(params[:id])
+    @job_type = JobType.find_by(id: params[:id])
+    redirect_to root_path, alert: t(".not_found") unless @job_type
   end
 end

@@ -14,7 +14,7 @@ JobType.delete_all
 
 # Creates three job types
 [ "Full Time", "Part Time", "Freelance" ].each do |job_type_name|
-  JobType.create!(name: job_type_name, active: true)
+  JobType.create!(name: job_type_name, status: :active)
 end
 
 # Creates three users

@@ -6,8 +6,8 @@
   </div>
 
   <div class="relative my-6">
-    <%= f.label :active %>
-    <%= f.checkbox :active %>
+    <%= f.label :status %>
+    <%= f.select :status, JobType.statuses.keys.map { |s| [t(".status.#{s}"), s] }, { include_blank: false } %>
   </div>
 
   <%= f.submit t('.save'), class: "hover:cursor-pointer flex w-fit items-center justify-center h-12 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700" %>

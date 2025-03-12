@@ -18,13 +18,13 @@ describe 'admin registers job type', type: :system do
     login_as admin
     visit new_job_type_path
     fill_in 'Nome',	with: 'Estágio'
-    check 'Ativo'
+    select 'Ativo', from: 'Status'
     click_on 'Salvar'
 
     expect(current_path).to eq job_types_path
     expect(page).to have_content 'Tipo de vaga criada com sucesso'
     expect(page).to have_content 'Estágio'
-    expect(JobType.last.active).to eq true
+    expect(JobType.last.status).to eq 'active'
   end
 
   it 'with status archived' do
@@ -33,12 +33,13 @@ describe 'admin registers job type', type: :system do
     login_as admin
     visit new_job_type_path
     fill_in 'Nome',	with: 'Estágio'
+    select 'Arquivado', from: 'Status'
     click_on 'Salvar'
 
     expect(current_path).to eq job_types_path
     expect(page).to have_content 'Tipo de vaga criada com sucesso'
     expect(page).to have_content 'Estágio'
-    expect(JobType.last.active).to eq false
+    expect(JobType.last.status).to eq 'archived'
   end
 
   it 'only admin users are allowed to create a job type' do

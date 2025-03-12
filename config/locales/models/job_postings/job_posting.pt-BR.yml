@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      job_posting:
+        one: Vaga
+        other: Vagas
+    attributes:
+      job_posting:
+        tag_list: Tag  
+  errors:
+    maximum_tag_error: Essa vaga já possui o máximo de tags
+    tag_must_be_unique: 'Tag já está em uso'

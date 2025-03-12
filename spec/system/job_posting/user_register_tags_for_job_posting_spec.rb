@@ -9,7 +9,7 @@ describe 'User adds tags to job posting', type: :system do
     visit root_path
     click_on 'Dev Rails Jr.'
     click_on 'Add Tag'
-    fill_in 'tag_name', with: 'Sinatra'
+    fill_in 'Tag', with: 'Sinatra'
     click_on 'Add'
 
     expect(page).to have_content('Tag adicionada com sucesso!')
@@ -26,10 +26,10 @@ describe 'User adds tags to job posting', type: :system do
     visit root_path
     click_on 'Dev Rails Jr.'
     click_on 'Add Tag'
-    fill_in 'tag_name', with: 'Full-time'
+    fill_in 'Tag', with: 'Full-time'
     click_on 'Add'
 
-    expect(page).to have_content('Tag já está em uso')
+    expect(page).to have_content('Tag já está em uso.')
   end
 
   it 'and cant see add tags button if job_posting have 3 tags registered' do
@@ -60,5 +60,20 @@ describe 'User adds tags to job posting', type: :system do
 
     expect(current_path).to eq job_posting_path(job_posting)
     expect(page).to have_content('Essa vaga já possui o máximo de tags')
+  end
+
+  it 'and added tag must not be blank' do
+    user = create(:user)
+    job_posting = create(:job_posting, title: 'Dev Rails Jr.')
+
+    login_as(user)
+    visit root_path
+    click_on 'Dev Rails Jr.'
+    click_on 'Add Tag'
+    fill_in 'Tag', with: ''
+    click_on 'Add'
+
+    expect(page).to have_content('Tag não pode ficar em branco')
+    expect(job_posting.tag_list.count).to eq 0
   end
 end

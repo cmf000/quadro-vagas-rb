@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      job_posting:
+        one: Job Posting
+        other: Job Postings
+    attributes:
+      job_posting:
+        tag_list: Tag 
+  errors:
+    maximum_tag_error: This job posting already has maximum tags
+    tag_must_be_unique: Tag must be unique

@@ -2,10 +2,3 @@ pt-BR:
   home:
     search:
       alert: Por favor, digite algum valor para a busca
-  tags:
-    job_posting_has_maximum_tags: Essa vaga já possui o máximo de tags
-    create:
-      create_tag: Tag adicionada com sucesso!
-      create_tag_fail: Não foi possível adicionar sua Tag.
-      tag_must_be_unique: Tag já está em uso.
-      tag_is_empty: Tag não pode ficar em branco.

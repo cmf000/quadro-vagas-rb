@@ -2,10 +2,3 @@ en:
   home:
     search:
       alert: Please, enter a search term
-  tags:
-    job_posting_has_maximum_tags: This job posting already has maximum tags
-    create:
-      create_tag: Tag added with success!
-      create_tag_fail: Failed to add tag.
-      tag_must_be_unique: Tag must be unique.
-      tag_is_empty: Tag can't be blank.

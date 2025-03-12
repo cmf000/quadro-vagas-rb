@@ -1,6 +1,6 @@
 class JobTypesController < ApplicationController
   before_action :check_user_is_admin
-  before_action :set_job_type, only: [ :edit, :update ]
+  before_action :set_job_type, only: [ :edit, :update, :archive, :activate ]
   def index
     @job_types = JobType.all
   end
@@ -31,6 +31,24 @@ class JobTypesController < ApplicationController
       flash.now[:alert] = t ".alert"
       render "edit", status: :unprocessable_entity
     end
+  end
+
+  def archive
+    if @job_type.archived!
+      flash[:notice] = t ".success"
+    else
+      flash.now[:alert] = t ".alert"
+    end
+    redirect_to job_types_path
+  end
+
+  def activate
+    if @job_type.active!
+      flash[:notice] = t ".success"
+    else
+      flash.now[:alert] = t ".alert"
+    end
+    redirect_to job_types_path
   end
 
   private

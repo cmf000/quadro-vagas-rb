@@ -50,4 +50,20 @@ describe 'user create job post', type: :system do
 
     expect(page).to have_content 'Erro ao tentar criar Anúncio da vaga'
   end
+
+  it 'and can only choose from active job types' do
+    user = create(:user)
+    create(:company_profile, user: user)
+    create(:job_type, name: 'Part-time', status: :active)
+    create(:job_type, name: 'Internship', status: :active)
+    create(:job_type, name: 'Senior', status: :archived)
+    ExperienceLevel.create!(name: 'Junior')
+
+    login_as user
+    visit new_job_posting_path
+
+    expect(page).to have_content 'Part-time'
+    expect(page).to have_content 'Internship'
+    expect(page).not_to have_content 'Senior'
+  end
 end

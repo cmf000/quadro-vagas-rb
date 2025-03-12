@@ -12,7 +12,9 @@ pt-BR:
       new_job_type: Novo Tipo de Vaga
       edit: Editar
       active: Ativo
+      activate: Ativar
       archived: Arquivado
+      archive: Arquivar
       no_records: Não há tipos de vagas cadastrados.
     new:
       title: Novo tipo de vaga
@@ -24,3 +26,9 @@ pt-BR:
     update:
       success: Tipo de vaga editada com sucesso
       alert: Não foi possível editar
+    archive:
+      success: Tipo de vaga arquivada
+      alert: Falha ao arquivar o tipo de vaga
+    activate:
+      success: Tipo de vaga ativada
+      alert: Falha ao ativar o tipo de vaga

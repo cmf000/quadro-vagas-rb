@@ -12,7 +12,9 @@ pt-BR:
       new_job_type: New Job Type
       edit: Edit
       active: Active
+      activate: Activate
       archived: Archived
+      archive: Archive
       no_records: No job types registered.
     new:
       title: New Job Type
@@ -24,3 +26,9 @@ pt-BR:
     update:
       success: Job type updated
       alert: Job type was not updated
+    archive:
+      success: Job type archived
+      alert: Something went wrong!
+    activate:
+      success: Job type activated
+      alert: Something went wrong!

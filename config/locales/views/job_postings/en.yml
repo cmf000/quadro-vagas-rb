@@ -1,0 +1,8 @@
+en:
+  job_postings:
+    new:
+      title: "Post a Job"
+      submit: "Submit"
+      select:
+        work_arrangement: "Select work arrangement"
+        salary_period: "Select salary period"

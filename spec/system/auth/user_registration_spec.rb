@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe 'User registration', type: :system do
   it 'successfully' do
+    Current.session = nil if defined?(Current)
+    page.driver.browser.manage.delete_all_cookies if page.driver.browser.respond_to?(:manage)
     visit new_registration_path
 
     fill_in 'Nome', with: 'João'

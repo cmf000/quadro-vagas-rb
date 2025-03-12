@@ -5,7 +5,7 @@ describe 'User edits job_type', type: :request do
     admin = create(:user, role: :admin)
     job_type = create(:job_type, name: 'Estágio', active: true)
 
-    login_as admin
+    request_login_as admin
     patch job_type_path(job_type.id), params: { job_type: {
       name: 'Pleno',
       active: false
@@ -20,7 +20,7 @@ describe 'User edits job_type', type: :request do
     regular = create(:user, role: :regular)
     job_type = create(:job_type, name: 'Estágio', active: true)
 
-    login_as regular
+    request_login_as regular
     patch job_type_path(job_type.id), params: { job_type: {
       name: 'Pleno',
       active: false
@@ -49,7 +49,7 @@ describe 'User edits job_type', type: :request do
     admin = create(:user, role: :admin)
     job_type = create(:job_type, name: 'Estágio', active: true)
 
-    login_as(admin)
+    request_login_as(admin)
     patch job_type_path(job_type.id), params: { job_type: {
       name: '',
       active: false
@@ -65,7 +65,7 @@ describe 'User edits job_type', type: :request do
     create(:job_type, name: 'Estágio', active: true)
     job_type = create(:job_type, name: 'Pleno', active: true)
 
-    login_as(admin)
+    request_login_as(admin)
     patch job_type_path(job_type.id), params: { job_type: {
       name: 'Estágio',
       active: false

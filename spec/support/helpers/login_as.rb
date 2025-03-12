@@ -4,4 +4,3 @@ def login_as(user)
   cookies = request.cookie_jar
   cookies.signed[:session_id] = { value: Current.session.id, httponly: true, same_site: :lax }
 end
-

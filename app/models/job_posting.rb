@@ -17,16 +17,16 @@ class JobPosting < ApplicationRecord
   validate :job_posting_has_maximum_tags
 
   MAXIMUM_TAGS = 3
-  
+
   def maximum_tags
-    tag_list.size < MAXIMUM_TAGS 
+    tag_list.size < MAXIMUM_TAGS
   end
 
   private
 
   def job_posting_has_maximum_tags
     if tag_list.count > MAXIMUM_TAGS
-      errors.add(:tag_list, I18n.t('errors.maximum_tag_error'))
+      errors.add(:tag_list, I18n.t("errors.maximum_tag_error"))
     end
   end
 end

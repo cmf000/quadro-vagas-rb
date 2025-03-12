@@ -6,9 +6,9 @@ class TagsController < ApplicationController
   def new; end
 
   def create
-    return redirect_to @job_posting, notice: t('.create_tag') if @job_posting.save
+    return redirect_to @job_posting, notice: t(".create_tag") if @job_posting.save
 
-    flash.now[:alert] = t('.create_tag_fail')
+    flash.now[:alert] = t(".create_tag_fail")
     render :new, status: :unprocessable_entity
   end
 
@@ -19,7 +19,7 @@ class TagsController < ApplicationController
   end
 
   def job_posting_has_maximum_tags?
-    redirect_to job_posting_path(@job_posting), alert: t('.job_posting_has_maximum_tags') unless @job_posting.maximum_tags
+    redirect_to job_posting_path(@job_posting), alert: t(".job_posting_has_maximum_tags") unless @job_posting.maximum_tags
   end
 
   def tag_validation
@@ -29,15 +29,15 @@ class TagsController < ApplicationController
 
   def tag_is_blank?
     unless params[:tag_list].present?
-      flash.now[:alert] = t('.tag_is_empty')
-      return true
+      flash.now[:alert] = t(".tag_is_empty")
+      true
     end
   end
-  
+
   def tag_is_unique?
     if params[:tag_list].downcase.in?(@job_posting.tag_list)
-      flash.now[:alert] = t('.tag_must_be_unique')
-      return true
+      flash.now[:alert] = t(".tag_must_be_unique")
+      true
     end
   end
 end

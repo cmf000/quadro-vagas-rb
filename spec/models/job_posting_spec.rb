@@ -35,7 +35,7 @@ RSpec.describe JobPosting, type: :model do
 
     it "should have 3 tags maximum" do
       job_posting = create(:job_posting)
-      job_posting.tag_list = ['Ruby', 'Dev Jr', 'Scrum']
+      job_posting.tag_list = [ 'Ruby', 'Dev Jr', 'Scrum' ]
       job_posting.save
 
       job_posting.tag_list.add('teste')

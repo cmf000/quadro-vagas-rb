@@ -10,7 +10,7 @@ describe 'user create job post', type: :system do
   it 'sucessfully', js: true do
     user = create(:user)
     create(:company_profile, user: user)
-    JobType.create!(name: 'Part time')
+    create(:job_type, name: 'Part time')
     ExperienceLevel.create!(name: 'Junior')
 
     login_as user
@@ -37,7 +37,7 @@ describe 'user create job post', type: :system do
   it 'fail due to empty required fields' do
     user = create(:user)
     create(:company_profile, user: user)
-    JobType.create!(name: 'Part time')
+    create(:job_type, name: 'Part time')
     ExperienceLevel.create!(name: 'Junior')
 
     login_as user

@@ -1,0 +1,8 @@
+<div>  
+  <%= form_with(url: job_posting_tags_path(@job_posting)) do |f| %>
+    <%= f.label :tag_name %>
+    <%= f.text_field :tag_name, maxlength: 10 %>
+    <%= form_error_message(@job_posting, :base) %>
+    <%= f.submit 'Add' %>
+  <% end %>
+</div>

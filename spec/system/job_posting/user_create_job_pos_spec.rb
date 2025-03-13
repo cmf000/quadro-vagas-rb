@@ -11,7 +11,7 @@ describe 'user create job post', type: :system do
     user = create(:user)
     create(:company_profile, user: user)
     create(:job_type, name: 'Part time')
-    ExperienceLevel.create!(name: 'Junior')
+    ExperienceLevel.create!(name: 'Junior', status: :active)
 
     login_as user
 
@@ -32,6 +32,23 @@ describe 'user create job post', type: :system do
     expect(page).to have_content 'Desenvolvedor backend'
     expect(page).to have_content 'BlinkedOn'
     expect(page).to have_content 'Part time'
+  end
+
+  it 'and can not select experience level archived', js: true do
+    user = create(:user)
+    create(:company_profile, user: user)
+    create(:job_type, name: 'Part time', status: :active)
+    ExperienceLevel.create!(name: 'Junior', status: :active)
+    ExperienceLevel.create!(name: 'Pleno', status: :archived)
+
+    login_as user
+
+    visit root_path
+
+    click_on 'Anunciar vaga'
+
+    expect(page).to have_content 'Junior'
+    expect(page).not_to have_content 'Pleno'
   end
 
   it 'fail due to empty required fields' do

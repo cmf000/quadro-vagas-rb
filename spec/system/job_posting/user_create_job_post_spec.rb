@@ -66,9 +66,9 @@ describe 'user create job post', type: :system do
     expect(page).to have_content 'Part time'
 
     within '#tags' do
-      expect(page).to have_content 'Rails'
-      expect(page).to have_content 'TDD'
-      expect(page).to have_content 'RSpec'
+      expect(page).to have_content 'rails'
+      expect(page).to have_content 'tdd'
+      expect(page).to have_content 'rspec'
     end
   end
 

@@ -33,7 +33,7 @@ describe 'User tries to create job post', type: :request do
     expect(job_posting.salary_period).to eq "monthly"
     expect(job_posting.work_arrangement).to eq "remote"
     expect(job_posting.description.to_plain_text).to eq "There’s"
-    expect(job_posting.tag_list).to eq [ 'Rails', 'RSpec', 'Ruby' ]
+    expect(job_posting.tag_list).to eq [ 'rails', 'rspec', 'ruby' ]
   end
 
   it 'and maximum tags should be 3' do

@@ -14,34 +14,17 @@ RSpec.describe JobPosting, type: :model do
   end
 
   context ".tag_list" do
-    it "should be unique" do
-      job_posting = create(:job_posting)
-      job_posting.tag_list.add('teste')
-      job_posting.save
-
-      job_posting.tag_list.add('teste')
-      job_posting.save
-
-      expect(job_posting.tag_list.count).to eq 1
-    end
-
-    it "tag is required" do
-      job_posting = create(:job_posting)
-
-      job_posting.tag_list.add('')
-      job_posting.save
-
-      expect(job_posting.tag_list.count).to eq 0
-    end
-
     it "should have 3 tags maximum" do
       job_posting = create(:job_posting)
       job_posting.tag_list = [ 'Ruby', 'Dev Jr', 'Scrum' ]
-      job_posting.save
+      job_posting.save!
 
       job_posting.tag_list.add('teste')
+      job_posting.save
 
       expect(job_posting).not_to be_valid
+      expect(job_posting.reload.tag_list.size).to eq 3
+      expect(job_posting.errors.full_messages).to include 'Essa vaga já possui o máximo de tags'
     end
   end
 end

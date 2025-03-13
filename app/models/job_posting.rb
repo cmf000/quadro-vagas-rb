@@ -36,7 +36,7 @@ class JobPosting < ApplicationRecord
 
   def job_posting_has_maximum_tags
     if tag_list.count > MAXIMUM_TAGS
-      errors.add(:tag_list, I18n.t("errors.maximum_tag_error"))
+      errors.add(:base, I18n.t("errors.maximum_tag_error"))
     end
   end
 end

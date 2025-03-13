@@ -57,10 +57,6 @@ class JobTypesController < ApplicationController
     params.require(:job_type).permit(:name, :status)
   end
 
-  def check_user_is_admin
-    redirect_to root_path, notice: t(".negated_access") unless Current.user.admin?
-  end
-
   def set_job_type
     @job_type = JobType.find_by(id: params[:id])
     redirect_to root_path, alert: t(".not_found") unless @job_type

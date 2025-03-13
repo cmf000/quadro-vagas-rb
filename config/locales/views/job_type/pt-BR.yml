@@ -1,6 +1,5 @@
 pt-BR:
   job_types:
-    negated_access: Acesso não autorizado
     not_found: Tipo de vaga não encontrado
     form:
       save: Salvar

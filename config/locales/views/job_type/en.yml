@@ -1,6 +1,5 @@
 pt-BR:
   job_types:
-    negated_access: Access negated
     not_found: Job type not found
     form:
       save: Save

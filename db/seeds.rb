@@ -1,9 +1,9 @@
 # Delete all records from the database
-CompanyProfile.delete_all
 JobPosting.delete_all
+CompanyProfile.delete_all
+User.delete_all
 JobType.delete_all
 ExperienceLevel.delete_all
-User.delete_all
 
 # Creates three job types
 [ "Full Time", "Part Time", "Freelance" ].each do |job_type_name|

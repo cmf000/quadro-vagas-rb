@@ -32,6 +32,10 @@ class JobPosting < ApplicationRecord
     tag_list.size < MAXIMUM_TAGS
   end
 
+  def currency_format
+    sprintf("%.2f", salary/100.0)
+  end
+
   private
 
   def job_posting_has_maximum_tags

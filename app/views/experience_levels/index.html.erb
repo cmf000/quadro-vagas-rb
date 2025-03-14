@@ -1,6 +1,6 @@
 <div>
   <h1> <%= t(".title") %> </h1>
-    <%= link_to '.add', new_experience_level_path, class: "text-lg text-emerald-600 font-medium underline decoration-emerald-600 transition-colors duration-300 hover:text-blue-500 hover:decoration-blue-500 focus:text-blue-500 focus:decoration-blue-500 focus:outline-none", role: "menuitem", aria: { haspopup: "false" }%>
+    <%= link_to t(".add"), new_experience_level_path, class: "text-lg text-emerald-600 font-medium underline decoration-emerald-600 transition-colors duration-300 hover:text-blue-500 hover:decoration-blue-500 focus:text-blue-500 focus:decoration-blue-500 focus:outline-none", role: "menuitem", aria: { haspopup: "false" }%>
   <div>
     <% unless @experience_levels.any? %>
       <p><%= t(".no_experience_levels_available") %></p>

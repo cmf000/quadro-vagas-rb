@@ -1,5 +1,7 @@
 pt-BR:
   job_postings:
+    show:
+      back: "Voltar"
     new:
       title: "Anunciar vaga"
       submit: "Anunciar"

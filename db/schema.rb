@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_11_170530) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_14_021217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -73,7 +73,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_11_170530) do
   create_table "job_postings", force: :cascade do |t|
     t.string "title"
     t.bigint "company_profile_id", null: false
-    t.decimal "salary"
+    t.integer "salary"
     t.integer "salary_currency"
     t.integer "salary_period"
     t.datetime "created_at", null: false

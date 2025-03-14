@@ -1,8 +1,8 @@
 <div class="overflow-hidden rounded shadow-md text-slate-500 shadow-slate-200 w-96">
   <div class="p-6">
     <header class="mb-4">
-      <h3 class="text-xl font-medium text-slate-700">Details for: <%= @job_posting.title %></h3>
-      <p class="text-sm text-slate-400">Company: <%= @job_posting.company_profile.name %></p>
+      <h3 class="text-xl font-medium text-slate-700"><%= JobPosting.model_name.human %> <%= @job_posting.title %></h3>
+      <p class="text-sm text-slate-400"><%= JobPosting.human_attribute_name(:company_profile) %>: <%= @job_posting.company_profile.name %></p>
     </header>
 
     <div class="flex gap-2 my-3" id="tags">
@@ -13,9 +13,9 @@
       <% end %>
     </div>
 
-    <p>Job Type: <%= @job_posting.job_type.name %></p>
-    <p>Salary: <%= @job_posting.salary %> | <%= @job_posting.salary_currency %></p>
-    <p>Salary Period: <%= @job_posting.salary_period %></p>
+    <p><%= JobPosting.human_attribute_name(:job_type) %>: <%= @job_posting.job_type.name %></p>
+    <p><%= JobPosting.human_attribute_name(:salary) %>: <%= @job_posting.currency_format %> | <%= JobPosting.human_enum_name("salary_currency", @job_posting.salary_currency) %></p>
+    <p><%= JobPosting.human_attribute_name(:salary_period) %>: <%= JobPosting.human_enum_name("salary_period", @job_posting.salary_period) %></p>
   </div>
-  <%= link_to 'Back', root_path, class: 'block w-full py-2 text-center text-white bg-slate-700 hover:bg-slate-800' %>
+  <%= link_to t(".back"), root_path, class: 'block w-full py-2 text-center text-white bg-slate-700 hover:bg-slate-800' %>
 </div>

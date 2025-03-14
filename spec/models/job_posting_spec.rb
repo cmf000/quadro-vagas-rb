@@ -27,4 +27,12 @@ RSpec.describe JobPosting, type: :model do
       expect(job_posting.errors.full_messages).to include 'Essa vaga já possui o máximo de tags'
     end
   end
+
+  context ".currency_format" do
+    it "should return a string in currency format with two decimals" do
+      job_posting = create(:job_posting, salary: 10_000)
+
+      expect(job_posting.currency_format).to eq "100.00"
+    end
+  end
 end

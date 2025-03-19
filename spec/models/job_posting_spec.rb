@@ -33,6 +33,9 @@ RSpec.describe JobPosting, type: :model do
       job_posting = create(:job_posting, salary: 10_000)
 
       expect(job_posting.currency_format).to eq "100.00"
+    end
+  end
+
   context 'status' do
     it "should be active if company is active" do
       user = create(:user, status: :active)

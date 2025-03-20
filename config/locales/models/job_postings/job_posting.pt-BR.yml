@@ -2,11 +2,13 @@ pt-BR:
   activerecord:
     models:
       job_posting:
-        one: Anúncio de trabalho
+        one: Vaga
+        other: Vagas
     attributes:
       job_posting:
         title: Título
         job_type_id: Tipo de trabalho
+        job_type: Tipo de trabalho
         salary: Salário
         salary_currency: Moeda
         salary_period: Período do salário
@@ -14,6 +16,7 @@ pt-BR:
         experience_level_id: Nível de experiência
         work_arrangement: Arranjo de trabalho
         job_location: Localidade da vaga
+        company_profile: Empresa
         salary_currencies:
           usd: USD
           eur: EUR
@@ -27,3 +30,8 @@ pt-BR:
           weekly: Semanal
           monthly: Mensal
           yearly: Anual
+
+        tag_list: Tag  
+  errors:
+    maximum_tag_error: Essa vaga já possui o máximo de tags
+    tag_must_be_unique: 'Tag já está em uso'

@@ -5,7 +5,7 @@ describe 'User activates job_type', type: :request do
     admin = create(:user, role: :admin)
     job_type = create(:job_type, name: 'Estágio', status: :archived)
 
-    request_login_as admin
+    login_as admin
     patch activate_job_type_path(job_type)
 
     expect(response).to redirect_to job_types_path
@@ -17,11 +17,11 @@ describe 'User activates job_type', type: :request do
     regular = create(:user, role: :regular)
     job_type = create(:job_type, name: 'Estágio', status: :archived)
 
-    request_login_as regular
+    login_as regular
     patch activate_job_type_path(job_type)
 
     expect(response).to redirect_to root_path
-    expect(flash[:notice]).to eq 'Acesso não autorizado'
+    expect(flash[:alert]).to eq 'Acesso não autorizado'
     expect(JobType.last.name).to eq 'Estágio'
     expect(JobType.last.status).to eq 'archived'
   end
@@ -39,7 +39,7 @@ describe 'User activates job_type', type: :request do
   it 'job type is not registered' do
     admin = create(:user, role: :admin)
 
-    request_login_as(admin)
+    login_as(admin)
     patch activate_job_type_path(999)
 
     expect(response).to redirect_to root_path

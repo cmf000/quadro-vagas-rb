@@ -1,5 +1,5 @@
 class JobTypesController < ApplicationController
-  before_action :check_user_is_admin
+  before_action :only_admin_access
   before_action :set_job_type, only: [ :edit, :update, :archive, :activate ]
   def index
     @job_types = JobType.all

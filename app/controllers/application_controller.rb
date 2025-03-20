@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def check_user_is_admin
-    redirect_to root_path, notice: I18n.t("negated_access") unless Current.user.admin?
+  def only_admin_access
+    redirect_to root_path, alert: I18n.t("unauthorized") unless admin?
   end
 end

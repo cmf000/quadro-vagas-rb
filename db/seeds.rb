@@ -1,6 +1,7 @@
 # Delete all records from the database
-CompanyProfile.delete_all
 JobPosting.delete_all
+CompanyProfile.delete_all
+User.delete_all
 JobType.delete_all
 ExperienceLevel.delete_all
 
@@ -9,23 +10,23 @@ ExperienceLevel.delete_all
   JobType.create!(name: job_type_name, status: :active)
 end
 
+# Creates four experience levels
 [ "Intern", "Junior", "Mid level", "Senior" ].each do |experience_level|
   ExperienceLevel.create!(name: experience_level)
 end
 
 # Creates three users
+users = []
 3.times do |n|
-  User.create!(name: "User #{n}th", last_name: "Doe", email_address: "#{n}th@email.com", password: "password123", password_confirmation: "password123")
+  users << User.create!(name: "User #{n}th", last_name: "Doe", email_address: "#{n}th@email.com", password: "password123", password_confirmation: "password123")
 end
 
 # Creates one admin
 User.create!(name: 'Admin', last_name: 'Admin', email_address: 'admin@email.com', password: 'password123', password_confirmation: "password123", role: :admin)
-
 # Creates three company profiles
 3.times do |n|
-  profile = CompanyProfile.new(name: "Company Name #{n}", website_url: "http://company#{n}.com", contact_email: "contact@company#{n}.com")
+  profile = CompanyProfile.new(user_id: users[n].id, name: "Company Name #{n}", website_url: "http://company#{n}.com", contact_email: "contact@company#{n}.com")
   profile.logo.attach(io: File.open(Rails.root.join('spec/support/files/logo.jpg')), filename: 'logo.jpg')
-  profile.user_id = n + 1
   profile.save!
 end
 

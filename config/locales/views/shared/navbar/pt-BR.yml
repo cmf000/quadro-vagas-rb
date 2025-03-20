@@ -7,3 +7,6 @@ pt-BR:
       company_profile: Perfil da Empresa
       job_types: Tipos de Vagas
       new_job_post: Anunciar vaga
+      placeholder_search: 'Pesquise aqui...'
+      experience_levels: 'Níveis de Experiência'
+

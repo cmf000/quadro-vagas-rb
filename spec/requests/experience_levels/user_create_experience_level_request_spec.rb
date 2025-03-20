@@ -9,7 +9,7 @@ describe 'User create experience level', type: :request  do
 
   it 'and user must be admin' do
     user = create(:user, role: :regular)
-    request_login_as user
+    login_as user
 
     post(experience_levels_path, params: { experience_level: { name: 'Junior', status: :archived } })
 
@@ -18,7 +18,7 @@ describe 'User create experience level', type: :request  do
 
   it 'succesfully' do
     user = create(:user, role: :admin)
-    request_login_as user
+    login_as user
 
     post(experience_levels_path, params: { experience_level: { name: 'Junior', status: :archived } })
 
@@ -27,7 +27,7 @@ describe 'User create experience level', type: :request  do
 
   it 'and fails when name is empty' do
     user = create(:user, role: :admin)
-    request_login_as user
+    login_as user
 
     post(experience_levels_path, params: { experience_level: { status: :archived } })
 
@@ -36,7 +36,7 @@ describe 'User create experience level', type: :request  do
 
   it 'and fails when name is repated' do
     user = create(:user, role: :admin)
-    request_login_as user
+    login_as user
 
     create(:experience_level, name: 'Junior')
     post(experience_levels_path, params: { experience_level: { name: 'Junior', status: :archived } })

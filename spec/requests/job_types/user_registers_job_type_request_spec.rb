@@ -4,7 +4,7 @@ describe 'User registers new job type', type: :request do
   it 'success' do
     admin = create(:user, role: :admin)
 
-    request_login_as admin
+    login_as admin
     post job_types_path params: { job_type: {
       name: 'Estágio',
       status: :active
@@ -19,14 +19,14 @@ describe 'User registers new job type', type: :request do
   it 'user must be admin' do
     regular = create(:user, role: :regular)
 
-    request_login_as regular
+    login_as regular
     post job_types_path params: { job_type: {
       name: 'Estágio',
       active: true
     } }
 
     expect(response).to redirect_to root_path
-    expect(flash[:notice]).to eq 'Acesso não autorizado'
+    expect(flash[:alert]).to eq 'Acesso não autorizado'
     expect(JobType.count).to eq 0
   end
 
@@ -43,7 +43,7 @@ describe 'User registers new job type', type: :request do
   it 'name is required' do
     admin = create(:user, role: :admin)
 
-    request_login_as admin
+    login_as admin
     post job_types_path params: { job_type: {
       active: true
     } }
@@ -56,7 +56,7 @@ describe 'User registers new job type', type: :request do
     admin = create(:user, role: :admin)
     create(:job_type, name: 'Estágio', status: :active)
 
-    request_login_as admin
+    login_as admin
     post job_types_path params: { job_type: {
       name: 'Estágio',
       status: :active

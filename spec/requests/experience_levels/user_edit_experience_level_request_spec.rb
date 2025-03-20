@@ -13,7 +13,7 @@ describe 'User edits experience level', type: :request do
 
   it 'and user must be admin' do
     user = create(:user, role: :regular)
-    request_login_as user
+    login_as user
     experience_level = ExperienceLevel.create(
       name: "Junior",
       status: :archived
@@ -26,7 +26,7 @@ describe 'User edits experience level', type: :request do
 
   it 'succesfully' do
     user = create(:user, role: :admin)
-    request_login_as user
+    login_as user
     experience_level = ExperienceLevel.create(
       name: "Junior",
       status: :archived
@@ -39,7 +39,7 @@ describe 'User edits experience level', type: :request do
 
   it 'fail when name is empty' do
     user = create(:user, role: :admin)
-    request_login_as user
+    login_as user
     experience_level = ExperienceLevel.create(
       name: "Junior",
       status: :archived
@@ -52,7 +52,7 @@ describe 'User edits experience level', type: :request do
 
   it 'fail when name is repeated' do
     user = create(:user, role: :admin)
-    request_login_as user
+    login_as user
     experience_level = ExperienceLevel.create(
       name: "Junior",
       status: :archived
